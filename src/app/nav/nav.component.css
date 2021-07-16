@@ -1,0 +1,21 @@
+.nav {
+  justify-content: left;
+}
+.list-container {
+  display: inline;
+}
+.nav-list {
+  list-style: none;
+}
+.nav-list li {
+  display: inline;
+}
+.nav-item a {
+  color: white;
+  margin: 2px;
+  border-style: solid;
+  text-decoration: none;
+  appearance: button;
+  border-radius: 5px;
+  padding: 5px;
+}

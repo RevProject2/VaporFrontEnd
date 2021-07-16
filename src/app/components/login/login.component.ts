@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log('hit');
     this.http
       .post<any>(
         'http://ec2-3-133-159-173.us-east-2.compute.amazonaws.com:8080/VGDS/users/login',
@@ -39,11 +38,8 @@ export class LoginComponent implements OnInit {
       )
       .subscribe(
         (response) => {
-          console.log(response);
           let resString = JSON.stringify(response);
-
           document.cookie = resString;
-          console.log(document.cookie);
           this.router.navigate(['user']);
         },
         (error) => {
