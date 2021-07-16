@@ -10,6 +10,12 @@ export class LogoutComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    this.logout();
+  }
+
+  logout() {
+    console.log('hit');
+    document.cookie = 'cookiename= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
     this.router.navigate(['login']);
   }
 }
