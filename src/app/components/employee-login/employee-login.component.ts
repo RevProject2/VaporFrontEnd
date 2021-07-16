@@ -2,21 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/Classes/User';
+import { Employee } from 'src/app/Classes/Employee';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  selector: 'app-employee-login',
+  templateUrl: './employee-login.component.html',
+  styleUrls: ['./employee-login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class EmployeeLoginComponent implements OnInit {
   loginForm = this.form.group({
     username: '',
     password: '',
   });
 
   private error = 'The username or password is not correct';
-  user: User = null;
+  employee: Employee = null;
 
   constructor(
     private http: HttpClient,
@@ -26,25 +26,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  register() {
-    this.router.navigate(['register']);
-  }
-
-  employeeLogin() {
-    this.router.navigate(['employeeLogin']);
+  goBack() {
+    this.router.navigate(['login']);
   }
 
   login(): void {
     this.http
       .post<any>(
-        'http://ec2-3-133-159-173.us-east-2.compute.amazonaws.com:8080/VGDS/users/login',
+        'http://ec2-3-133-159-173.us-east-2.compute.amazonaws.com:8080/VGDS/employees/login',
         this.loginForm.value
       )
       .subscribe(
         (response) => {
           let resString = JSON.stringify(response);
           document.cookie = resString;
-          this.router.navigate(['user']);
+          this.router.navigate(['employee']);
         },
         (error) => {
           alert(this.error);

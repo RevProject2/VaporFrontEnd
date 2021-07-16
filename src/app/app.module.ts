@@ -8,8 +8,12 @@ import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './register/register.component';
-import { NavComponent } from './nav/nav.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NavComponent } from './components/nav/nav.component';
+import { EmployeeComponent } from './components/employee/employee.component';
+import { EmployeeLoginComponent } from './components/employee-login/employee-login.component';
+import { EmployeeNavComponent } from './components/employee-nav/employee-nav.component';
+import { EmployeeLogoutComponent } from './components/employee-logout/employee-logout.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { NavComponent } from './nav/nav.component';
     LogoutComponent,
     RegisterComponent,
     NavComponent,
+    EmployeeComponent,
+    EmployeeLoginComponent,
+    EmployeeNavComponent,
+    EmployeeLogoutComponent,
   ],
   imports: [
     BrowserModule,
