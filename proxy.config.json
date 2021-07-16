@@ -1,0 +1,8 @@
+{
+  "/delivery/all/*": {
+    "target": "http://revproject2frontend.s3-website-us-west-2.amazonaws.com/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}
