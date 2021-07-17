@@ -9,8 +9,13 @@ import { UserComponent } from './components/user/user.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { FormsModule } from '@angular/forms';
 
+
+import { CatelogComponent } from './catalog/catalog.component';
+import { GameSearchComponent } from './game-search/game-search.component';
+
 @NgModule({
-  declarations: [AppComponent, LoginComponent, UserComponent, LogoutComponent],
+  declarations: [AppComponent, LoginComponent, UserComponent, LogoutComponent, CatelogComponent,
+    GameSearchComponent,],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
