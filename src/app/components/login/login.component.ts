@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/Classes/User';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +14,12 @@ export class LoginComponent implements OnInit {
     username: '',
     password: '',
   });
-
-  private error = 'The username or password is not correct';
   user: User = null;
 
   constructor(
-    private http: HttpClient,
     private router: Router,
-    private form: FormBuilder
+    private form: FormBuilder,
+    private us: UserService
   ) {}
 
   ngOnInit() {}
@@ -34,37 +32,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['employeeLogin']);
   }
 
-  login(): void {
-    this.http
-      .post<any>(
-        'http://ec2-3-133-159-173.us-east-2.compute.amazonaws.com:8080/VGDS/users/login',
-        this.loginForm.value
-      )
-      .subscribe(
-        (response) => {
-          let resString = JSON.stringify(response);
-          document.cookie = resString;
-          this.router.navigate(['user']);
-        },
-        (error) => {
-          alert(this.error);
-          console.log(error);
-        }
-      );
-  }
-  getCookie(cookieKey): string {
-    let name = cookieKey + '=';
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return '';
+  login() {
+    this.us.login(this.loginForm.value.username, this.loginForm.value.password);
   }
 }

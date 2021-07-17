@@ -14,6 +14,7 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { EmployeeLoginComponent } from './components/employee-login/employee-login.component';
 import { EmployeeNavComponent } from './components/employee-nav/employee-nav.component';
 import { EmployeeLogoutComponent } from './components/employee-logout/employee-logout.component';
+import { StoreComponent } from './components/store/store.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { EmployeeLogoutComponent } from './components/employee-logout/employee-l
     EmployeeLoginComponent,
     EmployeeNavComponent,
     EmployeeLogoutComponent,
+    StoreComponent,
   ],
   imports: [
     BrowserModule,
