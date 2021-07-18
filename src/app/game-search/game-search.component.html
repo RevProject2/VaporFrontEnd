@@ -1,0 +1,21 @@
+<div id="search-game">
+    <label for="search-box">Game Search </label><br>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+    <table class="table">
+      
+          <tbody>
+            <tr *ngFor="let game of games$ | async">
+                <td><img [src]='game.img'></td>
+                <td>{{game.name}}</td>
+                <td *ngFor="let g of game.genre | keyvalue">{{g.value}}</td>
+                <td>{{game.price | currency}}</td>
+                <td><button type="button" class="btn btn-primary">Add to Cart</button></td>
+                
+            </tr>
+            
+        </tbody>
+    </table>
+
+
+</div>
