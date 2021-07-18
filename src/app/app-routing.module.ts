@@ -3,12 +3,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { UserComponent } from './components/user/user.component';
+import { EmployeeLoginComponent } from './components/employee-login/employee-login.component';
+import { EmployeeComponent } from './components/employee/employee.component';
+import { RegisterComponent } from './components/register/register.component';
+import { EmployeeLogoutComponent } from './components/employee-logout/employee-logout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'employeeLogin', component: EmployeeLoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'logut', component: LogoutComponent },
+  { path: 'employeeLogout', component: EmployeeLogoutComponent },
+  { path: 'logout', component: LogoutComponent },
   { path: 'user', component: UserComponent },
+  { path: 'employee', component: EmployeeComponent },
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-logout',
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css'],
+  selector: 'app-employee-logout',
+  templateUrl: './employee-logout.component.html',
+  styleUrls: ['./employee-logout.component.css'],
 })
-export class LogoutComponent implements OnInit {
+export class EmployeeLogoutComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -16,6 +16,6 @@ export class LogoutComponent implements OnInit {
   logout() {
     console.log('hit');
     document.cookie = 'cookiename= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
-    this.router.navigate(['login']);
+    this.router.navigate(['employeeLogin']);
   }
 }

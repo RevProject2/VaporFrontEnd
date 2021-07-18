@@ -1,6 +1,6 @@
 <h1>Welcome to Vapor</h1>
 <div class="login-container">
-  <h3>Login</h3>
+  <h3>Employee Login</h3>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <label for="username">Username</label><br />
     <input
@@ -18,11 +18,9 @@
       formControlName="password"
       required
     /><br />
-
     <button type="submit" id="submitbtn">Login</button>
   </form>
   <span>
-    <button id="registerbtn" (click)="register()">Register</button>
-    <button id="registerbtn" (click)="employeeLogin()">EmployeeLogin</button>
+    <button id="back" (click)="goBack()">Go Back</button>
   </span>
 </div>

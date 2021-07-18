@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { User } from 'src/app/Classes/User';
 
 @Component({
   selector: 'app-user',
@@ -7,14 +7,13 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-  //user = sessionStorage.getItem('user');
-  user = '';
-  // newUser = JSON.parse(this.user);
-  constructor(private loginService: AuthenticationService) {}
+  user: User = null;
+  constructor() {}
 
   ngOnInit(): void {
-    //this.loginService.isUserLoggedIn();
-    //console.log(this.user);
-    this.loginService.getUser();
+    this.getUser();
+  }
+  getUser() {
+    this.user = JSON.parse(document.cookie);
   }
 }

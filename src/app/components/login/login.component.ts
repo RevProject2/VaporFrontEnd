@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/Classes/User';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -7,14 +10,29 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  username = '';
-  password = '';
+  loginForm = this.form.group({
+    username: '',
+    password: '',
+  });
+  user: User = null;
 
-  constructor(private loginservice: AuthenticationService) {}
+  constructor(
+    private router: Router,
+    private form: FormBuilder,
+    private us: UserService
+  ) {}
 
   ngOnInit() {}
 
+  register() {
+    this.router.navigate(['register']);
+  }
+
+  employeeLogin() {
+    this.router.navigate(['employeeLogin']);
+  }
+
   login() {
-    this.loginservice.authenticate(this.username, this.password);
+    this.us.login(this.loginForm.value.username, this.loginForm.value.password);
   }
 }
