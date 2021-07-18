@@ -15,6 +15,8 @@ import { EmployeeLoginComponent } from './components/employee-login/employee-log
 import { EmployeeNavComponent } from './components/employee-nav/employee-nav.component';
 import { EmployeeLogoutComponent } from './components/employee-logout/employee-logout.component';
 import { StoreComponent } from './components/store/store.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
+import { GameSearchComponent } from './components/game-search/game-search.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { StoreComponent } from './components/store/store.component';
     EmployeeNavComponent,
     EmployeeLogoutComponent,
     StoreComponent,
+    CatalogComponent,
+    GameSearchComponent,
   ],
   imports: [
     BrowserModule,
