@@ -5,30 +5,11 @@
     
 </div>
 
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-primary" (click)="clickAdd()">Add game</button>
+</div>
 
-<table class="table">
-    <thead>
-        <tr>
-          <th scope="col">Image</th>
-          <th scope="col">Game Name</th>
-          <th scope="col">Genre</th>
-          <th scope="col">Price</th>
-          <th scope="col">Edit</th>
-          <th scope="col">Remove</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let game of games">
-            <td><img [src]='game.img'></td>
-            <td>{{game.name}}</td>
-            <td *ngFor="let g of game.genre | keyvalue">{{g.value}}</td>
-            <td>{{game.price | currency}}</td>
-            <td><button type="button" class="btn btn-primary" >Edit</button></td>
-            <td><button type="button" class="btn btn-primary" (click)="delete(game)">Remove</button></td>
-        </tr>
-    </tbody>
-</table>
-<div class="container">
+<div class="container" *ngIf="isGameAdd">
     <form>
         <div class="form-group">
             <label for="game-name">Game name: </label>
@@ -46,10 +27,66 @@
             <label for="game-img">Game imgage URL: </label>
             <input id="game-img" #gameImg class="form-control"/><br>
         </div>
-        <button type="button" class="btn btn-primary" (click)="addGame({name:gameName.value, genre:gameGenre.value, img:gameImg.value, price:gamePrice.value})">Add game</button>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary" (click)="addGame({name:gameName.value, genre:gameGenre.value, img:gameImg.value, price:gamePrice.value})">Save</button>
+            <button type="button" class="btn btn-primary" (click)="collapse()">Collapse</button>
+        </div>
     </form>
 
 </div>
 
+<table class="table">
+    <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Game Name</th>
+          <th scope="col">Genre</th>
+          <th scope="col">Price</th>
+          <th scope="col">Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let game of games"
+        [class.selected] ="game === selectedGame"
+        (click)="onSelect(game)"
+        >
+            <td><img [src]='game.img'></td>
+            <td>{{game.name}}</td>
+            <td *ngFor="let g of game.genre | keyvalue">{{g.value}}</td>
+            <td>{{game.price | currency}}</td>
+            <!-- <td><button type="button" class="btn btn-primary" >Edit</button></td> -->
+            <td><button type="button" class="btn btn-primary" (click)="delete(game)">Remove</button></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+<div class="container" *ngIf="selectedGame">
+    <form>
+        <div class="form-group">
+            <label for="game-edit-name">Game name: </label>
+            <input id="game-edit-name" [(ngModel)]="selectedGame.name" [ngModelOptions]="{standalone: true}" placeholder="name" class="form-control" #gameEditName /><br>
+        </div>
+        <div class="form-group">
+            <label for="game-price">Game price: </label>
+            <input id="game-price"  [(ngModel)]="selectedGame.price" [ngModelOptions]="{standalone: true}" placeholder="price" class="form-control" #gameEditPrice /><br>
+        </div>
+        <div class="form-group">
+            <label for="game-genre">Game genre: </label>
+            <input id="game-genre"  [(ngModel)]="selectedGame.genre.name" [ngModelOptions]="{standalone: true}" placeholder="genre" class="form-control" #gameEditGenre /><br>
+        </div>
+        <div class="form-group">
+            <label for="game-img">Game imgage URL: </label>
+            <input id="game-img"  [(ngModel)]="selectedGame.img" [ngModelOptions]="{standalone: true}" placeholder="name" class="form-control" #gameEditImg /><br>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary" (click) ="save({id:selectedGame.id, name:gameEditName.value, genre:gameEditGenre.value, img:gameEditImg.value, price:gameEditPrice.value})">Update</button>
+            <button type="button" class="btn btn-primary" (click)="goBack()">Collapse</button>
+        </div>
+    </form>
+</div>
 
 

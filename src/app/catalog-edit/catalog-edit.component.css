@@ -1,0 +1,22 @@
+.table tr:hover{
+    color: #2c3a41;
+    background-color: #e6e6e6;
+    left: .1em;
+}
+
+
+.table tr.selected{
+    background-color: black;
+    color: white;
+}
+
+
+.table tr.selected:hover{
+    background-color: #505050;
+  color: white;
+}
+
+.table tr.selected:active{
+    background-color: black;
+    color: white;
+}

@@ -19,6 +19,7 @@ export class CatelogComponent implements OnInit {
   // }
 
   games?: Game[];
+
   
   constructor(private gameService: GamesService) { }
 

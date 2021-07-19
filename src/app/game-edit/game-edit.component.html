@@ -1,0 +1,28 @@
+<p>game-edit works!</p>
+<div class="container" *ngIf="game">
+    <form>
+        <div class="form-group">
+            <label for="game-edit-name">Game name: </label>
+            <input id="game-edit-name" [ngModel]="game.name" [ngModelOptions]="{standalone: true}" placeholder="name" class="form-control" #gameName /><br>
+        </div>
+        <div class="form-group">
+            <label for="game-price">Game price: </label>
+            <input id="game-price"  [ngModel]="game.price" [ngModelOptions]="{standalone: true}" placeholder="price" class="form-control" #gamePrice /><br>
+        </div>
+        <div class="form-group">
+            <label for="game-genre">Game genre: </label>
+            <input id="game-genre"  [ngModel]="game.genre.name" [ngModelOptions]="{standalone: true}" placeholder="genre" class="form-control" #gameGenre /><br>
+        </div>
+        <div class="form-group">
+            <label for="game-img">Game imgage URL: </label>
+            <input id="game-img"  [ngModel]="game.img" [ngModelOptions]="{standalone: true}" placeholder="name" class="form-control" #gameImg /><br>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-primary" (click) ="save({id:game.id, name:gameName.value, genre:gameGenre.value, img:gameImg.value, price:gamePrice.value})">Update</button>
+            <button type="button" class="btn btn-primary" (click)="goBack()">Collapse</button>
+        </div>
+        <!-- <button type="button" class="btn btn-primary" (click)="addGame({name:gameName.value, genre:gameGenre.value, img:gameImg.value, price:gamePrice.value})">Edit game</button> -->
+    </form>
+</div>
+
+

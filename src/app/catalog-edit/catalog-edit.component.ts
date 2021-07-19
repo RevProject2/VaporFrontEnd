@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../game';
 import { GamesService } from '../games.service';
@@ -11,12 +12,26 @@ export class CatalogEditComponent implements OnInit {
 
 
   games?: Game[];
+  selectedGame?: Game;
+  @Input() game?: Game;
+  isGameAdd: boolean = false;
+
   
   constructor(private gameService: GamesService) { }
 
   ngOnInit(): void {
     this.getGames();
   }
+  onSelect(game: Game): void{
+    console.log(`clicked: ${JSON.stringify(game)}`)
+    this.selectedGame = game;
+  }
+
+  clickAdd(){
+    this.isGameAdd = !this.isGameAdd;
+  }
+
+
   addGame(game:Game):void{
     game.name= game.name.trim();
     game.genre=game.genre.trim();
@@ -37,8 +52,32 @@ export class CatalogEditComponent implements OnInit {
     this.gameService.deleteGame(game.id).subscribe();
   }
 
+  save(game:Game): void{
+  
+    game.name= game.name.trim();
+    game.genre=game.genre.trim();
+    game.img= game.img.trim();
 
-  clearGames(): void {
-    this.games = [];
+    if(game){
+      this.gameService.updateGame(game).subscribe(
+        ()=>{
+         
+          this.goBack();
+          this.getGames();
+        }
+        );
+    }
   }
+
+  goBack(): void{
+    this.selectedGame= null;
+  }
+
+  collapse(): void{
+    this.isGameAdd = !this.isGameAdd;
+  }
+
+  // clearGames(): void {
+  //   this.games = [];
+  // }
 }
