@@ -1,0 +1,40 @@
+<div style="height: 5vh" class="p-3 mb-2 bg-secondary text-white">
+  <div style="margin-top: auto; margin-bottom: auto">
+    <h2 class="text-center align-middle">Your Cart</h2>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Game Name</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Price</th>
+      <th scope="col">Cart</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let game of games">
+      <td><img [src]="game.gameId.img" /></td>
+      <td class="text-white">{{ game.gameId.name }}</td>
+      <td class="text-white" *ngFor="let g of game.gameId.genre | keyvalue">
+        {{ g.value }}
+      </td>
+      <td class="text-white">{{ game.gameId.price | currency }}</td>
+      <td class="text-white">
+        <button
+          type="button"
+          (click)="removeCart(game.gameId)"
+          class="btn btn-danger"
+        >
+          Remove From Cart
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h5 class="text-white">Total: ${{ total }}</h5>
+<button type="button" (click)="purchase()" class="btn btn-primary">
+  Purchase
+</button>
+<button type="button" (click)="goBack()" class="btn btn-danger">Go Back</button>

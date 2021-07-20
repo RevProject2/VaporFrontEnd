@@ -14,9 +14,10 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { EmployeeLoginComponent } from './components/employee-login/employee-login.component';
 import { EmployeeNavComponent } from './components/employee-nav/employee-nav.component';
 import { EmployeeLogoutComponent } from './components/employee-logout/employee-logout.component';
-import { StoreComponent } from './components/store/store.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { GameSearchComponent } from './components/game-search/game-search.component';
+import { CatalogeditComponent } from './components/catalogedit/catalogedit.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,10 @@ import { GameSearchComponent } from './components/game-search/game-search.compon
     EmployeeLoginComponent,
     EmployeeNavComponent,
     EmployeeLogoutComponent,
-    StoreComponent,
     CatalogComponent,
     GameSearchComponent,
+    CatalogeditComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

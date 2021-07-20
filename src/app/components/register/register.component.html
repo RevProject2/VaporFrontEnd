@@ -1,46 +1,55 @@
-<div class="register-container">
-  <h3>Please Register</h3>
-  <form [formGroup]="registerForm" (ngSubmit)="register()">
-    <label for="username">Desired Username</label><br />
-    <input
-      type="text"
-      placeholder="Username"
-      id="username"
-      formControlName="username"
-      required
-    /><br />
-    <label for="password">Password</label><br />
-    <input
-      type="password"
-      placeholder="Password"
-      id="password"
-      formControlName="password"
-      required
-    /><br />
-    <label for="firstName">First Name</label><br />
-    <input
-      type="text"
-      placeholder="First Name"
-      id="firstName"
-      formControlName="first"
-      required
-    /><br />
-    <label for="lastName">Last Name</label><br />
-    <input
-      type="text"
-      placeholder="Last Name"
-      id="lastName"
-      formControlName="last"
-      required
-    /><br />
-    <label for="accountBalance">Account Balance</label><br />
-    <input
-      type="text"
-      placeholder="Enter Account Balance"
-      id="accountBalance"
-      formControlName="balance"
-      required
-    /><br />
-    <button type="submit" id="submitbtn">Register</button>
-  </form>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="register-container bg-dark">
+      <h3>Please Register</h3>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <label for="username">Desired Username</label><br />
+        <input
+          type="text"
+          placeholder="Username"
+          id="username"
+          formControlName="username"
+          required
+        /><br />
+        <label for="password">Password</label><br />
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          formControlName="password"
+          required
+        /><br />
+        <label for="firstName">First Name</label><br />
+        <input
+          type="text"
+          placeholder="First Name"
+          id="firstName"
+          formControlName="first"
+          required
+        /><br />
+        <label for="lastName">Last Name</label><br />
+        <input
+          type="text"
+          placeholder="Last Name"
+          id="lastName"
+          formControlName="last"
+          required
+        /><br />
+        <label for="accountBalance">Account Balance</label><br />
+        <input
+          type="text"
+          placeholder="Enter Account Balance"
+          id="accountBalance"
+          formControlName="balance"
+          required
+        /><br />
+        <button type="submit" class="btn btn-primary" id="submitbtn">
+          Register
+        </button>
+      </form>
+      <button id="goBack" class="btn btn-danger" (click)="goBack()">
+        Go Back
+      </button>
+    </div>
+  </div>
 </div>

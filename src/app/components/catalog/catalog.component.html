@@ -1,6 +1,13 @@
+<app-nav
+  style="height: 5vh; position: fixed"
+  class="bg-dark text-white"
+></app-nav>
 <div style="height: 20vh" class="p-3 mb-2 bg-dark text-white">
   <div style="margin-top: auto; margin-bottom: auto">
     <h2 class="text-center align-middle">Game Store</h2>
+    <button type="button" class="btn btn-primary" (click)="viewCart()">
+      View Cart
+    </button>
   </div>
 </div>
 
@@ -17,12 +24,23 @@
   <tbody>
     <tr *ngFor="let game of games">
       <td><img [src]="game.img" /></td>
-      <td>{{ game.name }}</td>
-      <td *ngFor="let g of game.genre | keyvalue">{{ g.value }}</td>
-      <td>{{ game.price | currency }}</td>
-      <td>
-        <button type="button" class="btn btn-primary">Add to Cart</button>
+      <td class="text-white">{{ game.name }}</td>
+      <td class="text-white" *ngFor="let g of game.genre | keyvalue">
+        {{ g.value }}
+      </td>
+      <td class="text-white">{{ game.price | currency }}</td>
+      <td class="text-white">
+        <button
+          [ngClass]="{ disabled: !isValid(game) }"
+          type="button"
+          (click)="createCart(game)"
+          class="btn btn-primary"
+        >
+          Add to Cart
+        </button>
       </td>
     </tr>
   </tbody>
 </table>
+
+<app-game-search></app-game-search>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -16,9 +17,17 @@ export class RegisterComponent implements OnInit {
     balance: 0,
   });
 
-  constructor(private form: FormBuilder, private us: UserService) {}
+  constructor(
+    private form: FormBuilder,
+    private us: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
+
+  goBack() {
+    this.router.navigate(['login']);
+  }
 
   register() {
     this.us.addUser(this.registerForm.value);

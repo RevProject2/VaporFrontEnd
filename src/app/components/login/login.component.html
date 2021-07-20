@@ -1,28 +1,42 @@
-<h1>Welcome to Vapor</h1>
-<div class="login-container">
-  <h3>Login</h3>
-  <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <label for="username">Username</label><br />
-    <input
-      type="text"
-      placeholder="Username..."
-      id="username"
-      formControlName="username"
-      required
-    /><br />
-    <label for="password">Password</label><br />
-    <input
-      type="password"
-      placeholder="Password..."
-      id="password"
-      formControlName="password"
-      required
-    /><br />
+<h1 class="text-center align-middle text-white">Welcome to Vapor</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="login-container bg-dark">
+      <h3>Login</h3>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <label for="username">Username</label><br />
+        <input
+          type="text"
+          placeholder="Username..."
+          id="username"
+          formControlName="username"
+          required
+        /><br />
+        <label for="password">Password</label><br />
+        <input
+          type="password"
+          placeholder="Password..."
+          id="password"
+          formControlName="password"
+          required
+        /><br />
 
-    <button type="submit" id="submitbtn">Login</button>
-  </form>
-  <span>
-    <button id="registerbtn" (click)="register()">Register</button>
-    <button id="registerbtn" (click)="employeeLogin()">EmployeeLogin</button>
-  </span>
+        <button type="submit" class="btn btn-primary" id="submitbtn">
+          Login
+        </button>
+      </form>
+      <span>
+        <button id="registerbtn" class="btn btn-success" (click)="register()">
+          Register
+        </button>
+        <button
+          id="registerbtn"
+          class="btn btn-danger"
+          (click)="employeeLogin()"
+        >
+          EmployeeLogin
+        </button>
+      </span>
+    </div>
+  </div>
 </div>

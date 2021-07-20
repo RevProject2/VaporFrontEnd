@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Game } from '../Classes/Game';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { User } from '../Classes/User';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class UserService {
   login(username: string, password: string) {
     this.http
       .post<any>(
-        'http://ec2-3-133-159-173.us-east-2.compute.amazonaws.com:8080/VGDS/users/login',
+        'http://ec2-18-216-176-243.us-east-2.compute.amazonaws.com:8080/VGDS/users/login',
         {
           username,
           password,
@@ -50,7 +51,7 @@ export class UserService {
   addUser(user: object) {
     this.http
       .post<User>(
-        'http://ec2-3-133-159-173.us-east-2.compute.amazonaws.com:8080/VGDS/users',
+        'http://ec2-18-216-176-243.us-east-2.compute.amazonaws.com:8080/VGDS/users',
         user
       )
       .subscribe(
@@ -65,13 +66,37 @@ export class UserService {
       );
   }
 
-  getGames() {
+  getUser(id: number) {
     return this.http
-      .get<Game>(
-        'http://ec2-3-133-159-173.us-east-2.compute.amazonaws.com:8080/VGDS/games'
+      .get<User>(
+        `http://ec2-18-216-176-243.us-east-2.compute.amazonaws.com:8080/VGDS/users/${id}`
       )
-      .toPromise();
+      .subscribe((response) => {
+        let resString = JSON.stringify(response);
+        document.cookie = resString;
+      });
   }
 
-  getUserGames() {}
+  updateBalance(id: number, balance: number) {
+    const user = { balance: balance };
+    return this.http
+      .put<User>(
+        `http://ec2-18-216-176-243.us-east-2.compute.amazonaws.com:8080/VGDS/users/deposit/${id}`,
+        user
+      )
+      .subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          alert('The balance cannot be a negative number');
+          console.log(error);
+        }
+      );
+  }
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      return of(result as T);
+    };
+  }
 }
