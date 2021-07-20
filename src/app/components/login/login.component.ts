@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     password: '',
   });
   user: User = null;
-
+  //d-flex-row align-items-center bg-dark text-white
   constructor(
     private router: Router,
     private form: FormBuilder,

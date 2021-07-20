@@ -7,6 +7,8 @@ import { EmployeeLoginComponent } from './components/employee-login/employee-log
 import { EmployeeComponent } from './components/employee/employee.component';
 import { RegisterComponent } from './components/register/register.component';
 import { EmployeeLogoutComponent } from './components/employee-logout/employee-logout.component';
+import { CatalogComponent } from './components/catalog/catalog.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'employee', component: EmployeeComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'catalog', component: CatalogComponent },
+  { path: 'cart', component: CartComponent },
 ];
 
 @NgModule({

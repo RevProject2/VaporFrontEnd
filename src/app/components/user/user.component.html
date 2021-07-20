@@ -1,4 +1,47 @@
-<div>
-  <app-nav class="nav"></app-nav>
-  <h1>Welcome {{ user?.username }}</h1>
+<app-nav
+  style="height: 5vh; position: fixed"
+  class="bg-dark text-white"
+></app-nav>
+<div style="height: 20vh" class="p-3 mb-2 bg-dark text-white">
+  <div style="margin-top: auto; margin-bottom: auto">
+    <h2 class="text-center align-middle">Welcome {{ user?.username }}</h2>
+    <h4>Your Balance: {{ user?.balance }}</h4>
+    <form [formGroup]="balanceForm" (ngSubmit)="addMoney()">
+      <label for="balance"></label>
+      <input
+        type="text"
+        name="balance"
+        formControlName="balance"
+        placeholder="Deposit"
+      />
+      <br />
+      <button type="submit" class="btn btn-primary">Deposit</button>
+    </form>
+  </div>
 </div>
+<div style="height: 5vh" class="p-3 mb-2 bg-secondary text-white">
+  <div style="margin-top: auto; margin-bottom: auto">
+    <h2 class="text-center align-middle">Your Games</h2>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Game Name</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Price</th>
+      <th scope="col">Cart</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let game of userGames">
+      <td><img [src]="game.gameId.img" /></td>
+      <td class="text-white">{{ game.gameId.name }}</td>
+      <td class="text-white" *ngFor="let g of game.gameId.genre | keyvalue">
+        {{ g.value }}
+      </td>
+      <td class="text-white">{{ game.gameId.price | currency }}</td>
+    </tr>
+  </tbody>
+</table>

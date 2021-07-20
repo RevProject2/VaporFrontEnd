@@ -33,7 +33,7 @@ export class EmployeeLoginComponent implements OnInit {
   login(): void {
     this.http
       .post<any>(
-        'http://ec2-3-133-159-173.us-east-2.compute.amazonaws.com:8080/VGDS/employees/login',
+        'http://ec2-18-216-176-243.us-east-2.compute.amazonaws.com:8080/VGDS/employees/login',
         this.loginForm.value
       )
       .subscribe(
