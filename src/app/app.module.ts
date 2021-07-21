@@ -18,6 +18,7 @@ import { CatalogComponent } from './components/catalog/catalog.component';
 import { GameSearchComponent } from './components/game-search/game-search.component';
 import { CatalogeditComponent } from './components/catalogedit/catalogedit.component';
 import { CartComponent } from './components/cart/cart.component';
+import { PurchaseHistoryComponent } from './components/purchase-history/purchase-history.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CartComponent } from './components/cart/cart.component';
     GameSearchComponent,
     CatalogeditComponent,
     CartComponent,
+    PurchaseHistoryComponent,
   ],
   imports: [
     BrowserModule,

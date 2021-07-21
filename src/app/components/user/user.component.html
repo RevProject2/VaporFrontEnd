@@ -5,7 +5,7 @@
 <div style="height: 20vh" class="p-3 mb-2 bg-dark text-white">
   <div style="margin-top: auto; margin-bottom: auto">
     <h2 class="text-center align-middle">Welcome {{ user?.username }}</h2>
-    <h4>Your Balance: {{ user?.balance }}</h4>
+    <h4>Your Balance: ${{ userBalance?.balance }}</h4>
     <form [formGroup]="balanceForm" (ngSubmit)="addMoney()">
       <label for="balance"></label>
       <input

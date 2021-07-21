@@ -14,6 +14,7 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class CatalogComponent implements OnInit {
   games?: Game[];
+  cartGames: Cart[];
   userGames?: Library[];
   user: User = null;
   cart: Cart = {
@@ -54,7 +55,8 @@ export class CatalogComponent implements OnInit {
     },
   };
 
-  gameId: number;
+  gameId: number[];
+  cartGameId: number[];
 
   constructor(
     private gameService: GameService,
@@ -66,6 +68,7 @@ export class CatalogComponent implements OnInit {
     this.getGames();
     this.getUser();
     this.getUserGames();
+    this.getCartGames();
   }
 
   getUser() {
@@ -77,23 +80,39 @@ export class CatalogComponent implements OnInit {
   }
 
   getUserGames() {
-    this.gameId = 0;
+    this.gameId = [];
     this.gameService.getUserGames(this.user.id).subscribe((userGames) => {
       this.userGames = userGames;
       for (let i = 0; i < this.userGames.length; i++) {
         let game = this.userGames[i];
-        this.gameId = game.gameId.id;
-        console.log(this.gameId);
+        this.gameId.push(game.gameId.id);
+      }
+    });
+  }
+
+  getCartGames() {
+    this.cartGameId = [];
+    this.cs.getCart(this.user.id).subscribe((cartGames) => {
+      this.cartGames = cartGames;
+      for (let i = 0; i < this.cartGames.length; i++) {
+        let game = this.cartGames[i];
+        this.cartGameId.push(game.gameId.id);
       }
     });
   }
 
   isValid(game) {
-    if (game.id == this.gameId) {
-      return false;
-    } else {
-      return true;
+    for (let i = 0; i < this.cartGameId.length; i++) {
+      if (game.id == this.cartGameId[i]) {
+        return true;
+      }
     }
+    for (let i = 0; i < this.gameId.length; i++) {
+      if (game.id == this.gameId[i]) {
+        return true;
+      }
+    }
+    return false;
   }
 
   clearGames(): void {
@@ -103,7 +122,6 @@ export class CatalogComponent implements OnInit {
   createCart(game: Game) {
     this.cart.userId = this.user;
     this.cart.gameId = game;
-    console.log(this.cart);
     this.cs
       .addGame(this.user, game, 'add')
       .subscribe((cart) => (this.cart = cart));

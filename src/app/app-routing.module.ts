@@ -9,6 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { EmployeeLogoutComponent } from './components/employee-logout/employee-logout.component';
 import { CatalogComponent } from './components/catalog/catalog.component';
 import { CartComponent } from './components/cart/cart.component';
+import { PurchaseHistoryComponent } from './components/purchase-history/purchase-history.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'catalog', component: CatalogComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'history', component: PurchaseHistoryComponent },
 ];
 
 @NgModule({

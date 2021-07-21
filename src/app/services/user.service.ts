@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { PurchaseHistory } from '../Classes/PurchaseHistory';
 import { User } from '../Classes/User';
 
 @Injectable({
@@ -77,6 +78,14 @@ export class UserService {
       });
   }
 
+  getUserBalance(id: number) {
+    return this.http
+      .get<User>(
+        `http://ec2-18-216-176-243.us-east-2.compute.amazonaws.com:8080/VGDS/users/${id}`
+      )
+      .pipe(catchError(this.handleError<User>('getUserBalance')));
+  }
+
   updateBalance(id: number, balance: number) {
     const user = { balance: balance };
     return this.http
@@ -94,6 +103,19 @@ export class UserService {
         }
       );
   }
+
+  getPurchaseHistory(id: number) {
+    return this.http
+      .get<PurchaseHistory[]>(
+        `http://ec2-18-216-176-243.us-east-2.compute.amazonaws.com:8080/VGDS/users/history/${id}`
+      )
+      .pipe(
+        catchError(
+          this.handleError<PurchaseHistory[]>('getPurchaseHistory', [])
+        )
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       return of(result as T);

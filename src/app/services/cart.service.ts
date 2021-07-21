@@ -31,7 +31,7 @@ export class CartService {
       .pipe(catchError(this.gs.handleError<Cart>('addGame')));
   }
 
-  getGames(id: number) {
+  getCart(id: number) {
     return this.http
       .get<Cart[]>(
         `http://ec2-18-216-176-243.us-east-2.compute.amazonaws.com:8080/VGDS/users/carts/${id}`
@@ -63,6 +63,14 @@ export class CartService {
         `http://ec2-18-216-176-243.us-east-2.compute.amazonaws.com:8080/VGDS/users/purchase/${id}`,
         null
       )
-      .pipe(catchError(this.gs.handleError('purchase')));
+      .subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          alert('Insufficient Funds');
+          console.log(error);
+        }
+      );
   }
 }

@@ -13,11 +13,21 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserComponent implements OnInit {
   public user: User;
+  userBalance: User = {
+    id: 0,
+    username: '',
+    password: '',
+    first: '',
+    last: '',
+    balance: 0,
+  };
   games: Game[];
   userGames: Library[];
   balanceForm = this.form.group({
     balance: '',
   });
+
+  balance: number;
 
   library: Library = {
     id: 0,
@@ -46,24 +56,30 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.getUserGames();
     this.getUser();
+    this.getBalance();
   }
   getUser() {
     this.user = JSON.parse(document.cookie);
   }
 
   addMoney() {
-    console.log(this.balanceForm.value);
     this.us.updateBalance(this.user.id, this.balanceForm.value.balance);
-    document.cookie = 'cookiename= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
-    this.us.getUser(this.user.id);
-    this.user = JSON.parse(document.cookie);
+    setTimeout(() => {
+      this.getBalance();
+    }, 200);
+  }
+
+  getBalance() {
+    this.us
+      .getUserBalance(this.user.id)
+      .subscribe((user) => (this.userBalance = user));
+    this.balance = this.userBalance.balance;
   }
 
   getUserGames() {
     this.user = JSON.parse(document.cookie);
-    console.log(this.user);
     this.gs
       .getUserGames(this.user.id)
-      .subscribe((games) => ((this.userGames = games), console.log(games)));
+      .subscribe((games) => (this.userGames = games));
   }
 }

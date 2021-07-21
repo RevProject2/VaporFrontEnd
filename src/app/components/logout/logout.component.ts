@@ -14,7 +14,6 @@ export class LogoutComponent implements OnInit {
   }
 
   logout() {
-    console.log('hit');
     document.cookie = 'cookiename= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
     this.router.navigate(['login']);
   }

@@ -31,7 +31,7 @@
       <td class="text-white">{{ game.price | currency }}</td>
       <td class="text-white">
         <button
-          [ngClass]="{ disabled: !isValid(game) }"
+          [ngClass]="{ disabled: isValid(game) }"
           type="button"
           (click)="createCart(game)"
           class="btn btn-primary"
